@@ -10,6 +10,7 @@ module Mirage
     # Example Usage:
     #
     #   Mirage.start :port => 9001 -> Configured MirageClient ready to use.
+    #   Mirage.start :url => http://custom.url -> Add custom url in case if there is no localhost.
     def start options={}
       options={:port => 7001}.merge(options)
       Runner.new.invoke(:start, [], options)

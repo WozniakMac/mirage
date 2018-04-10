@@ -25,6 +25,14 @@ describe Mirage::Client do
       Client.new(:port => port).url.should == "http://localhost:#{port}"
     end
 
+    it 'can be configured with both url and port pointing to Mirage' do
+      mirage_url = "http://url.for.mirage"
+      port = 9001
+      Client.new(mirage_url).url.should == mirage_url
+
+      Client.new(:url => mirage_url, :port => port).url.should == "#{mirage_url}:#{port}"
+    end
+
     it 'raises an error if neither a port or url specified in the argument' do
       expect { Client.new({}) }.to raise_error()
       expect { Client.new("rubbish") }.to raise_error()
